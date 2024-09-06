@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>XViewerClass</class>
+ <widget class="QWidget" name="XViewerClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>XViewer</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="xviewer.qrc">
+    <normaloff>:/XViewer/img/xv.ico</normaloff>:/XViewer/img/xv.ico</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/*按钮样式*/
+QPushButton:hover
+{
+	background-color: #473C8B; /*背景色*/ 
+	border-style: outset;
+	border-radius:5px; /*边界圆滑*/
+	border-color: #8B7355;
+	font: bold 14px;
+	color:white; /*字体颜色*/
+	font-family:黑体;
+	padding: 4px;
+}
+
+QPushButton:!hover
+{
+	background-color: #473C8B; /*背景色*/ 
+	border-style: outset;
+	border-radius:5px; /*边界圆滑*/
+	border-color: #8B7355;
+	font: bold 12px;
+	color:white; /*字体颜色*/
+	font-family:黑体;
+	padding: 4px;
+}
+
+/* 顶部样式 */
+#XViewerClass {
+    background-color: #333333;
+    border-radius: 0px;
+}
+#head
+{
+background-color:#3c3c3c;
+}
+#logo
+{
+	background-image: url(:/XViewer/img/logo_150_40.png);
+}
+#close
+{
+background-image: url(:/XViewer/img/close.png);
+}
+#min
+{
+background-image: url(:/XViewer/img/min.png);
+}
+#max
+{
+background-image: url(:/XViewer/img/max.png);
+}
+#normal
+{
+background-image: url(:/XViewer/img/normal.png);
+}
+/* body 演示*/
+#body
+{
+background-color: #212121;
+}
+#left
+{
+	background-color: #252525;
+}
+#cams
+{
+background-color: #1e1e1e;
+}
+#status
+{
+	 color: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #000000, stop:1 #808080); /* 从黑色到灰色渐变 */
+}
+/*菜单按钮切换样式*/
+#preview
+{
+	background-color: rgb(50,50,50)
+}
+#playback
+{
+	background-color: rgb(50,50,50)
+}
+#preview:checked
+{
+	background-color: rgb(0,102,184)
+}
+#playback:checked
+{
+	background-color: rgb(0,102,184)
+}
+</string>
+  </property>
+  <widget class="QWidget" name="head" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>60</height>
+    </rect>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>60</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <widget class="QWidget" name="logo" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>5</y>
+      <width>151</width>
+      <height>41</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QWidget" name="head_button" native="true">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>0</y>
+      <width>91</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <widget class="QPushButton" name="close">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>10</y>
+       <width>24</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="min">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>24</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="max">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>10</y>
+       <width>24</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="normal">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>10</y>
+       <width>24</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <zorder>normal</zorder>
+    <zorder>close</zorder>
+    <zorder>min</zorder>
+    <zorder>max</zorder>
+   </widget>
+   <widget class="QLabel" name="status">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>20</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>监控中...</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="preview">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>30</y>
+      <width>90</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>预览</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+    <property name="autoExclusive">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="playback">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>30</y>
+      <width>90</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>回放</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>false</bool>
+    </property>
+    <property name="autoExclusive">
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="body" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>60</y>
+     <width>721</width>
+     <height>401</height>
+    </rect>
+   </property>
+   <widget class="QWidget" name="left" native="true">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>200</width>
+      <height>600</height>
+     </rect>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>200</width>
+      <height>16777215</height>
+     </size>
+    </property>
+    <widget class="QListWidget" name="cam_list">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>29</y>
+       <width>201</width>
+       <height>771</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="dragEnabled">
+      <bool>true</bool>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>50</width>
+       <height>50</height>
+      </size>
+     </property>
+     <item>
+      <property name="text">
+       <string>cmera</string>
+      </property>
+      <property name="icon">
+       <iconset resource="xviewer.qrc">
+        <normaloff>:/XViewer/img/cam.png</normaloff>:/XViewer/img/cam.png</iconset>
+      </property>
+     </item>
+    </widget>
+    <widget class="QPushButton" name="add_cam">
+     <property name="geometry">
+      <rect>
+       <x>5</x>
+       <y>5</y>
+       <width>50</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>新增</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="set_cam">
+     <property name="geometry">
+      <rect>
+       <x>65</x>
+       <y>5</y>
+       <width>50</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>修改</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="del_cam">
+     <property name="geometry">
+      <rect>
+       <x>125</x>
+       <y>5</y>
+       <width>50</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>删除</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="cams" native="true">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>10</y>
+      <width>491</width>
+      <height>371</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QWidget" name="playback_wid" native="true">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>19</y>
+      <width>471</width>
+      <height>341</height>
+     </rect>
+    </property>
+    <widget class="QListWidget" name="time_list">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>131</width>
+       <height>600</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <item>
+      <property name="text">
+       <string>20:30:59</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="XCalendar" name="cal">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>0</y>
+       <width>321</width>
+       <height>341</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>XCalendar</class>
+   <extends>QCalendarWidget</extends>
+   <header>xcalendar.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="xviewer.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>close</sender>
+   <signal>clicked()</signal>
+   <receiver>XViewerClass</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>753</x>
+     <y>21</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>907</x>
+     <y>205</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>min</sender>
+   <signal>clicked()</signal>
+   <receiver>XViewerClass</receiver>
+   <slot>showMinimized()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>693</x>
+     <y>24</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>659</x>
+     <y>-39</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>max</sender>
+   <signal>clicked()</signal>
+   <receiver>XViewerClass</receiver>
+   <slot>MaxWindow()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>723</x>
+     <y>29</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>841</x>
+     <y>52</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>normal</sender>
+   <signal>clicked()</signal>
+   <receiver>XViewerClass</receiver>
+   <slot>NormalWindow()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>723</x>
+     <y>29</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>add_cam</sender>
+   <signal>clicked()</signal>
+   <receiver>XViewerClass</receiver>
+   <slot>AddCam()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>44</x>
+     <y>86</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-8</x>
+     <y>13</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>set_cam</sender>
+   <signal>clicked()</signal>
+   <receiver>XViewerClass</receiver>
+   <slot>SetCam()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>100</x>
+     <y>82</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>106</x>
+     <y>-19</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>del_cam</sender>
+   <signal>clicked()</signal>
+   <receiver>XViewerClass</receiver>
+   <slot>DelCam()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>156</x>
+     <y>86</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>161</x>
+     <y>-15</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>preview</sender>
+   <signal>clicked()</signal>
+   <receiver>XViewerClass</receiver>
+   <slot>Preview()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>211</x>
+     <y>38</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>217</x>
+     <y>-13</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>playback</sender>
+   <signal>clicked()</signal>
+   <receiver>XViewerClass</receiver>
+   <slot>Playback()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>333</x>
+     <y>35</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>314</x>
+     <y>-7</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cam_list</sender>
+   <signal>clicked(QModelIndex)</signal>
+   <receiver>XViewerClass</receiver>
+   <slot>SelectCamera(QModelIndex)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>119</x>
+     <y>209</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>132</x>
+     <y>-19</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cal</sender>
+   <signal>clicked(QDate)</signal>
+   <receiver>XViewerClass</receiver>
+   <slot>SelectDate(QDate)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>549</x>
+     <y>172</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>619</x>
+     <y>-16</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>time_list</sender>
+   <signal>activated(QModelIndex)</signal>
+   <receiver>XViewerClass</receiver>
+   <slot>PlayVideo(QModelIndex)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>296</x>
+     <y>150</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>360</x>
+     <y>-19</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>MaxWindow()</slot>
+  <slot>NormalWindow()</slot>
+  <slot>AddCam()</slot>
+  <slot>SetCam()</slot>
+  <slot>DelCam()</slot>
+  <slot>Preview()</slot>
+  <slot>Playback()</slot>
+  <slot>SelectCamera(QModelIndex)</slot>
+  <slot>SelectDate(QDate)</slot>
+  <slot>PlayVideo(QModelIndex)</slot>
+ </slots>
+</ui>
